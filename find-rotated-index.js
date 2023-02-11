@@ -12,30 +12,30 @@ function findRotatedIndex(array, target) {
 	const rotationCount = findRotationCount(array);
 
 	// First and last indeces, if the array wasn't rotated
-	let firstIdx = 0;
-	let lastIdx = array.length - 1;
+	let first = 0;
+	let last = array.length - 1;
 
-	while (firstIdx <= lastIdx) {
+	while (first <= last) {
 		// Middle index, if the array wasn't rotated
-		let middleIdx = firstIdx + Math.floor((lastIdx - firstIdx) / 2);
+		let middle = first + Math.floor((last - first) / 2);
 
 		// Rotated index. This is the actual position in the array
-		let rotatedIdx = middleIdx - rotationCount;
-		if (rotatedIdx < 0) rotatedIdx = array.length - rotatedIdx * -1;
-		if (rotatedIdx > array.length - 1)
-			rotatedIdx = rotatedIdx - (array.length - 1);
+		let rotatedMiddle = middle - rotationCount;
+		if (rotatedMiddle < 0) rotatedMiddle = array.length - rotatedMiddle * -1;
+		if (rotatedMiddle > array.length - 1)
+			rotatedMiddle = rotatedMiddle - (array.length - 1);
 
 		// Value at the rotated middle index
-		let value = array[rotatedIdx];
+		let value = array[rotatedMiddle];
 
 		// If the value equals the target, return it
-		if (value === target) return rotatedIdx;
+		if (value === target) return rotatedMiddle;
 
-		// If the value is greater than the target, it must abe on the left side of the middleIdx
-		if (value > target) lastIdx = middleIdx - 1;
+		// If the value is greater than the target, it must abe on the left side of the middle
+		if (value > target) last = middle - 1;
 
-		// If the value is less than the target, it must be on the right side of the middleIdx
-		if (value < target) firstIdx = middleIdx + 1;
+		// If the value is less than the target, it must be on the right side of the middle
+		if (value < target) first = middle + 1;
 	}
 	// If the value is still not found, it does not exist in the array
 	return -1;

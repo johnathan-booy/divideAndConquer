@@ -6,15 +6,15 @@
  */
 
 function findRotationCount(array) {
-	let leftIdx = 0;
-	let rightIdx = array.length - 1;
-	while (leftIdx <= rightIdx) {
-		const middleIdx = leftIdx + Math.ceil((rightIdx - leftIdx) / 2);
-		if (array[middleIdx] < array[middleIdx - 1]) return middleIdx;
-		if (array[middleIdx] >= array[leftIdx]) {
-			leftIdx = middleIdx + 1;
+	let first = 0;
+	let last = array.length - 1;
+	while (first <= last) {
+		const middle = first + Math.ceil((last - first) / 2);
+		if (array[middle] < array[middle - 1]) return middle;
+		if (array[middle] >= array[first]) {
+			first = middle + 1;
 		} else {
-			rightIdx = middleIdx - 1;
+			last = middle - 1;
 		}
 	}
 	return 0;
